@@ -4,3 +4,4 @@ pandas
 numpy
 lightgbm
 json
+pytho==3.10.7
