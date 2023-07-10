@@ -3,5 +3,4 @@ gunicorn
 pandas
 numpy
 lightgbm
-zipfile
 json
