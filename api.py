@@ -12,6 +12,7 @@ from zipfile import ZipFile
 from lightgbm import LGBMClassifier
 import uvicorn
 import json
+import os
 #app = FastAPI()
 # Création de l'instance de l'application Flask
 app = Flask(__name__)
@@ -41,10 +42,6 @@ def check_id(id_client):
         # Renvoyer les données clients
         return json_check_id
 
-
-@app.route("/hello")
-def hello():
-    return "Hello World!"
 
 # Définir une route pour l'identifiant client
 @app.route('/client_id/<int:id_client>', methods=['GET']) # GET par défaut 
@@ -114,6 +111,8 @@ def inf_client(id_client):
     return json_inf_client
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))  # Récupérer le port à partir de la variable d'environnement PORT, par défaut 5000
+    app.run(host='0.0.0.0', port=port)
+    #app.run(debug=True)
      #uvicorn.run(app)
 
