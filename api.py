@@ -42,6 +42,10 @@ def check_id(id_client):
         return json_check_id
 
 
+@app.route("/hello")
+def hello():
+    return "Hello World!"
+
 # Définir une route pour l'identifiant client
 @app.route('/client_id/<int:id_client>', methods=['GET']) # GET par défaut 
 def client_id(id_client):
