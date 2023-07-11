@@ -10,7 +10,6 @@ import math
 import base64
 from zipfile import ZipFile
 from lightgbm import LGBMClassifier
-import uvicorn
 import json
 import os
 #app = FastAPI()
@@ -113,5 +112,5 @@ def inf_client(id_client):
 if __name__ == "__main__":
     #port = int(os.environ.get('PORT', 8000))  # Récupérer le port à partir de la variable d'environnement PORT, par défaut 5000
     #uvicorn.run(host='0.0.0.0', port=port)
-    #app.run(debug=True)
-    uvicorn.run(app)
+    app.run(debug=True)
+    #uvicorn.run(app)
