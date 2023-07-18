@@ -16,13 +16,27 @@ import os
 # Création de l'instance de l'application Flask
 app = Flask(__name__)
 
+# Import des données 
+z = ZipFile("real_data_clean_test.zip")
+data_id = pd.read_csv(z.open('real_data_clean_test.csv'), encoding ='utf-8')
+all_id_client = list(data_id['SK_ID_CURR'].unique())
+
+z = ZipFile("real_data_clean_test.zip")
+data_origin = pd.read_csv(z.open('real_data_clean_test.csv'), encoding ='utf-8')
+
+z = ZipFile("df_test_imputed.zip") # le dataset final avec Standardisation et encodage
+data_clean = pd.read_csv(z.open('df_test_imputed.csv'), encoding='utf-8')
+
+z = ZipFile("test_imputed_without_standardisation.zip")
+data_clean_without_standard = pd.read_csv(z.open('test_imputed_without_standardisation.csv'), encoding ='utf-8')
+
 
 # Définir une route pour la validation de l'id_client
 @app.route('/check_id/<int:id_client>', methods=['GET'])#, methods=['POST']
 def check_id(id_client):
-    z = ZipFile("real_data_clean_test.zip")
-    data_id = pd.read_csv(z.open('real_data_clean_test.csv'), encoding ='utf-8')
-    all_id_client = list(data_id['SK_ID_CURR'].unique())
+    #z = ZipFile("real_data_clean_test.zip")
+    #data_id = pd.read_csv(z.open('real_data_clean_test.csv'), encoding ='utf-8')
+    #all_id_client = list(data_id['SK_ID_CURR'].unique())
     
     # Vérifier si l'ID client est présent dans la liste des ID client du jeu de données
     id_client = int(id_client)
@@ -44,8 +58,8 @@ def check_id(id_client):
 # Définir une route pour les informations client et les autres clients
 @app.route('/client_id/<int:id_client>', methods=['GET']) # GET par défaut 
 def client_id(id_client):
-    z = ZipFile("real_data_clean_test.zip")
-    data_origin = pd.read_csv(z.open('real_data_clean_test.csv'), encoding ='utf-8')
+    #z = ZipFile("real_data_clean_test.zip")
+    #data_origin = pd.read_csv(z.open('real_data_clean_test.csv'), encoding ='utf-8')
 
     # id_client en int
     id_client = int(id_client)
@@ -63,8 +77,8 @@ def client_id(id_client):
 # Définir une route pour la prédiction
 @app.route('/predict/<int:id_client>', methods=['GET']) # GET par défaut 
 def predict(id_client):
-    z = ZipFile("df_test_imputed.zip") # le dataset final avec Standardisation et encodage
-    data_clean = pd.read_csv(z.open('df_test_imputed.csv'), encoding='utf-8')
+    #z = ZipFile("df_test_imputed.zip") # le dataset final avec Standardisation et encodage
+    #data_clean = pd.read_csv(z.open('df_test_imputed.csv'), encoding='utf-8')
 
     # id_client en int
     id_client = int(id_client)
@@ -84,8 +98,8 @@ def predict(id_client):
 # Définir une route pour les information client
 @app.route('/inf_client/<int:id_client>', methods=['GET']) # GET par défaut 
 def inf_client(id_client):
-    z = ZipFile("test_imputed_without_standardisation.zip")
-    data_clean_without_standard = pd.read_csv(z.open('test_imputed_without_standardisation.csv'), encoding ='utf-8')
+    #z = ZipFile("test_imputed_without_standardisation.zip")
+    #data_clean_without_standard = pd.read_csv(z.open('test_imputed_without_standardisation.csv'), encoding ='utf-8')
 
     # id_client en int
     id_client = int(id_client)
