@@ -13,7 +13,7 @@ from lightgbm import LGBMClassifier
 import json
 import os
 
-# Création de l'instance de l'application Flask
+# Création de l'instance de l'application Flask 
 app = Flask(__name__)
 
 # Import des données 
